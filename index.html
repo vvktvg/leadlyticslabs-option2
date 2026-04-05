@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadlytics Labs | B2B Data Validation & Benchmarking</title>
+<meta name="description" content="Validate and benchmark your B2B datasets against truth sources like LinkedIn. Ensure accuracy, compliance, and campaign-readiness.">
+<link rel="canonical" href="https://leadlyticslabs.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Figtree:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236C3AED'/%3E%3Cpath d='M8 22V10h3v9h5v3H8z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#0D0B14;--bg2:#13111C;--bg3:#1A1825;--card:#15131F;--t1:#F0EEF5;--t2:#8A879A;--t3:#5E5B6E;--purple:#6C3AED;--purple2:#8B5CF6;--purple3:#C4B5FD;--purpledim:rgba(108,58,237,.08);--teal:#10B981;--teal2:#34D399;--amber:#E6A817;--red:#EF4444;--bd:#1F1D2A;--bd2:#2C2A38;--tr:.3s ease}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Figtree',sans-serif;background:var(--bg);color:var(--t1);line-height:1.65;overflow-x:hidden;font-weight:400}
+a{text-decoration:none;color:inherit;transition:var(--tr)}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+img{max-width:100%;display:block}
+.c{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:'Schibsted Grotesk',sans-serif;font-weight:800;line-height:1.08}
+.mono{font-family:'IBM Plex Mono',monospace}
+.it{font-family:'Instrument Serif',serif;font-style:italic;color:var(--purple3)}
+
+/* ══════ HEADER ══════ */
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 0;transition:background .3s,border .3s;background:rgba(13,11,20,.85);backdrop-filter:blur(14px)}
+header.s{border-bottom:1px solid var(--bd)}
+header .inner{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px}
+.logo svg{width:30px;height:30px}
+.logo span{font-family:'Schibsted Grotesk';font-size:1rem;font-weight:800}
+nav{display:none;align-items:center;gap:24px}
+nav a{font-family:'IBM Plex Mono';font-size:.72rem;font-weight:500;color:var(--t3);letter-spacing:.02em}
+nav a:hover{color:var(--purple3)}
+.hcta{display:flex;align-items:center;gap:8px}
+.btn-try{padding:8px 18px;font-family:'Schibsted Grotesk';font-size:.78rem;font-weight:700;border-radius:50px;background:linear-gradient(135deg,var(--purple),#9333EA);color:#fff;transition:var(--tr);box-shadow:0 2px 10px rgba(108,58,237,.25)}
+.btn-try:hover{box-shadow:0 4px 20px rgba(108,58,237,.35);transform:translateY(-1px)}
+.hmenu{display:flex;flex-direction:column;gap:4px;padding:6px}
+.hmenu span{width:16px;height:1.5px;background:var(--t2);border-radius:1px}
+/* Mobile menu */
+.mm{position:fixed;top:0;right:-100%;width:75%;max-width:300px;height:100vh;background:var(--bg2);z-index:200;padding:72px 24px;transition:right .3s ease;border-left:1px solid var(--bd)}
+.mm.o{right:0}
+.mm a{display:block;padding:12px 0;font-family:'IBM Plex Mono';font-size:.82rem;font-weight:500;color:var(--t2);border-bottom:1px solid var(--bd)}
+.mm a:hover{color:var(--purple3)}
+.mmx{position:absolute;top:16px;right:16px;font-size:1.1rem;color:var(--t3);padding:6px}
+.mov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:199}
+.mov.o{display:block}
+
+/* ══════ HERO ══════ */
+.hero{padding:160px 0 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-20%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(108,58,237,.06),transparent 65%);pointer-events:none}
+.hero h1{font-size:clamp(2.2rem,6vw,3.8rem);letter-spacing:-.04em;margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto}
+.hero h1 .line{display:block;opacity:0;transform:translateY(16px);animation:lup .6s ease forwards}
+.hero h1 .line:nth-child(2){animation-delay:.1s}
+.hero h1 .line:nth-child(3){animation-delay:.2s}
+@keyframes lup{to{opacity:1;transform:none}}
+.hero>p{font-size:clamp(.9rem,1.6vw,1.02rem);color:var(--t2);max-width:480px;margin:0 auto 32px;line-height:1.78;opacity:0;animation:lup .5s ease .35s forwards}
+.hero-acts{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;opacity:0;animation:lup .5s ease .45s forwards}
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:50px;font-family:'Schibsted Grotesk';font-weight:700;font-size:.86rem;background:linear-gradient(135deg,var(--purple),#9333EA);color:#fff;transition:var(--tr);box-shadow:0 2px 12px rgba(108,58,237,.25)}
+.btn-p:hover{box-shadow:0 6px 24px rgba(108,58,237,.3);transform:translateY(-2px)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:50px;font-family:'Schibsted Grotesk';font-weight:700;font-size:.86rem;border:1.5px solid var(--bd2);color:var(--t1);transition:var(--tr)}
+.btn-o:hover{border-color:rgba(108,58,237,.3);color:var(--purple3)}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+
+/* ══════ BELIEF ══════ */
+.belief{padding:80px 0;text-align:center}
+.belief-card{max-width:640px;margin:0 auto;border:1px solid var(--bd);border-radius:16px;padding:48px 32px;position:relative;overflow:hidden;background:var(--card)}
+.belief-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:var(--purple)}
+.belief h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:500;line-height:1.45;font-family:'Figtree'}
+.belief h2 strong{font-family:'Schibsted Grotesk';font-weight:800}
+
+/* ══════ STATS ══════ */
+.stats{padding:40px 0 80px}
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bd);border-radius:12px;overflow:hidden;border:1px solid var(--bd)}
+.stat{background:var(--bg);padding:28px 16px;text-align:center}
+.stat:hover{background:var(--bg2)}
+.stat-n{font-family:'IBM Plex Mono';font-size:clamp(1.5rem,4vw,2rem);font-weight:700;margin-bottom:4px;line-height:1}
+.stat-l{font-size:.7rem;color:var(--t3);line-height:1.3}
+
+/* ══════ ABOUT ══════ */
+.about{padding:80px 0}
+.about-grid{display:grid;grid-template-columns:1fr;gap:40px}
+.about-txt h2{font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:16px;letter-spacing:-.02em}
+.about-txt>p{color:var(--t2);font-size:.92rem;line-height:1.78;margin-bottom:24px}
+.svc-tags{display:flex;flex-wrap:wrap;gap:8px}
+.svc-tags span{padding:6px 14px;border:1px solid var(--bd2);border-radius:50px;font-family:'IBM Plex Mono';font-size:.68rem;font-weight:500;color:var(--t2)}
+.svc-tags span:hover{border-color:var(--purple);color:var(--purple3);background:var(--purpledim)}
+/* About visual — abstract gradient card */
+.about-vis{border-radius:14px;overflow:hidden;position:relative;background:var(--card);border:1px solid var(--bd);padding:20px}
+.rpt-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--bd)}
+.rpt-head span{font-family:'IBM Plex Mono';font-size:.6rem;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
+.rpt-head .rpt-score{font-family:'IBM Plex Mono';font-size:.85rem;font-weight:700;color:var(--teal2)}
+.rpt-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(31,29,42,.6);font-size:.72rem}
+.rpt-row:last-child{border-bottom:none}
+.rpt-email{flex:1;font-family:'IBM Plex Mono';font-size:.65rem;color:var(--t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rpt-field{font-family:'IBM Plex Mono';font-size:.6rem;color:var(--t3);width:60px;text-align:center}
+.rpt-badge{padding:2px 8px;border-radius:4px;font-family:'IBM Plex Mono';font-size:.55rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.rpt-badge.ok{background:rgba(16,185,129,.1);color:var(--teal2)}.rpt-badge.warn{background:rgba(230,168,23,.1);color:var(--amber)}.rpt-badge.fail{background:rgba(239,68,68,.1);color:var(--red)}
+.rpt-bar{height:4px;border-radius:2px;background:var(--bd);margin-top:16px;overflow:hidden}
+.rpt-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--teal),var(--purple));width:0;transition:width 1.2s ease}
+
+/* ══════ SERVICES ══════ */
+.services{padding:80px 0}
+.services .sec-h{text-align:center;margin-bottom:48px}
+.services .sec-h h2{font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:12px;letter-spacing:-.02em}
+.services .sec-h p{max-width:460px;margin:0 auto;color:var(--t2);font-size:.92rem;line-height:1.75}
+.s-grid{display:grid;grid-template-columns:1fr;gap:14px}
+/* Service card with gradient top image */
+.scard{border:1px solid var(--bd);border-radius:12px;overflow:hidden;background:var(--card);transition:var(--tr)}
+.scard:hover{border-color:var(--bd2);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.25)}
+.scard-img{height:140px;position:relative;overflow:hidden}
+.scard-img.im1{background:linear-gradient(135deg,#1a0a3e,#0f1030,#0a1a2a)}
+.scard-img.im2{background:linear-gradient(135deg,#0a1a2a,#0f2a1a,#0a1520)}
+.scard-img.im3{background:linear-gradient(135deg,#1a1a0a,#2a1a0a,#1a0a1a)}
+.scard-img.im4{background:linear-gradient(135deg,#0a1030,#1a0a3e,#1a0a2a)}
+/* Abstract SVG pattern overlay */
+.scard-img svg{position:absolute;inset:0;width:100%;height:100%;opacity:.15}
+.scard-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(transparent,var(--card))}
+.scard-body{padding:22px 20px}
+.scard-body h3{font-size:1rem;margin-bottom:6px}
+.scard-body>p{font-size:.82rem;color:var(--t2);line-height:1.65;margin-bottom:14px}
+.scard-feat{list-style:none}
+.scard-feat li{display:flex;align-items:center;gap:6px;padding:3px 0;font-size:.76rem;color:var(--t3)}
+.scard-feat li::before{content:'';width:3px;height:3px;border-radius:50%;flex-shrink:0}
+.scard.s1 .scard-feat li::before{background:var(--teal)}.scard.s2 .scard-feat li::before{background:var(--purple2)}.scard.s3 .scard-feat li::before{background:var(--amber)}.scard.s4 .scard-feat li::before{background:var(--purple3)}
+.scard-link{display:flex;align-items:center;gap:4px;margin-top:14px;font-family:'IBM Plex Mono';font-size:.72rem;font-weight:500;color:var(--purple3)}
+.scard-link:hover{gap:8px;color:var(--purple2)}
+.scard-link svg{width:14px;height:14px;transition:var(--tr)}
+
+/* ══════ DIFFERENTIATORS ══════ */
+.diff{padding:80px 0;background:var(--bg2)}
+.diff .sec-h{margin-bottom:40px}
+.diff .sec-h h2{font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:10px}
+.diff .sec-h p{color:var(--t2);font-size:.92rem;line-height:1.75;max-width:460px}
+.diff-list{display:grid;grid-template-columns:1fr;gap:0}
+.ditem{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--bd)}
+.ditem:last-child{border-bottom:none}
+.ditem-ic{width:40px;height:40px;border-radius:10px;background:var(--purpledim);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ditem-ic svg{width:18px;height:18px;color:var(--purple2)}
+.ditem h4{font-size:.88rem;margin-bottom:2px;font-weight:700}
+.ditem p{font-size:.78rem;color:var(--t2);line-height:1.55}
+
+/* ══════ TRUST ══════ */
+.trust{padding:56px 0;text-align:center}
+.trust-label{font-family:'IBM Plex Mono';font-size:.62rem;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.14em;margin-bottom:20px}
+.trust-logos{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;opacity:.15}
+.trust-logos span{font-family:'Schibsted Grotesk';font-weight:800;font-size:.82rem}
+
+/* ══════ TESTIMONIALS ══════ */
+.testi{padding:80px 0}
+.testi .sec-h{text-align:center;margin-bottom:48px}
+.testi .sec-h h2{font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:10px}
+.t-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.tcard{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:24px 20px;position:relative}
+.tcard::before{content:'\201C';position:absolute;top:8px;right:16px;font-family:'Instrument Serif',serif;font-size:3rem;color:var(--purple);opacity:.06;line-height:1}
+.tcard:hover{border-color:var(--bd2)}
+.tcard-stars{display:flex;gap:2px;margin-bottom:10px}
+.tcard-stars svg{width:12px;height:12px;color:#FBBF24}
+.tcard q{display:block;font-size:.84rem;color:var(--t2);line-height:1.75;margin-bottom:16px;font-style:italic;quotes:none}
+.tcard-who{display:flex;align-items:center;gap:10px}
+.tcard-av{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--purple),#9333EA);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono';font-weight:600;font-size:.65rem;color:#fff}
+.tcard-name{font-weight:600;font-size:.8rem}
+.tcard-role{font-size:.68rem;color:var(--t3)}
+
+/* ══════ CTA ══════ */
+.cta{padding:96px 0;text-align:center;position:relative;overflow:hidden}
+.cta-waves{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:800px;opacity:.08;pointer-events:none}
+.cta h2{font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:12px;position:relative;z-index:1}
+.cta>p,.cta-p{font-size:.95rem;color:var(--t2);max-width:420px;margin:0 auto 28px;line-height:1.75;position:relative;z-index:1}
+.cta .btn-p{position:relative;z-index:1}
+
+/* ══════ FOOTER ══════ */
+footer{padding:56px 0 24px;border-top:1px solid var(--bd)}
+.f-grid{display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:36px}
+.f-brand p{font-size:.78rem;color:var(--t3);line-height:1.7;margin-top:10px;max-width:240px}
+.f-col h5{font-family:'IBM Plex Mono';font-size:.64rem;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--purple2)}
+.f-col a{display:block;padding:3px 0;font-size:.78rem;color:var(--t3)}
+.f-col a:hover{color:var(--purple3)}
+.f-bot{display:flex;flex-direction:column;gap:14px;align-items:center;padding-top:20px;border-top:1px solid var(--bd)}
+.f-bot p{font-family:'IBM Plex Mono';font-size:.66rem;color:var(--t3)}
+.f-soc{display:flex;gap:6px}
+.f-soc a{width:30px;height:30px;border-radius:8px;border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.f-soc a:hover{border-color:var(--purple);background:var(--purpledim)}
+.f-soc a svg{width:12px;height:12px;color:var(--t3)}
+.f-soc a:hover svg{color:var(--purple3)}
+
+/* ══════ ANIMATIONS ══════ */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.rv.v{opacity:1;transform:translateY(0)}
+.rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}.rv[data-d="3"]{transition-delay:.24s}.rv[data-d="4"]{transition-delay:.32s}
+.scrollup{position:fixed;bottom:16px;right:16px;width:34px;height:34px;border-radius:8px;background:var(--purple);display:flex;align-items:center;justify-content:center;z-index:50;opacity:0;transition:var(--tr)}
+.scrollup.v{opacity:1}.scrollup svg{width:14px;height:14px;color:#fff}
+
+/* ══════ RESPONSIVE ══════ */
+@media(min-width:640px){.s-grid{grid-template-columns:repeat(2,1fr)}.t-grid{grid-template-columns:repeat(2,1fr)}.stats-row{grid-template-columns:repeat(4,1fr)}.diff-list{grid-template-columns:repeat(2,1fr);gap:0 32px}.f-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:768px){.about-grid{grid-template-columns:1fr 1fr;gap:48px;align-items:center}}
+@media(min-width:1024px){nav{display:flex}.hmenu{display:none}.t-grid{grid-template-columns:repeat(3,1fr)}.diff-list{grid-template-columns:repeat(3,1fr);gap:0 40px}.f-grid{grid-template-columns:1.3fr 1fr 1fr 1fr}.f-bot{flex-direction:row;justify-content:space-between}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr"><div class="c inner">
+<a href="/" class="logo"><svg viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="8" fill="url(#hlg)"/><path d="M8 21V9h3v9h4.5v3H8z" fill="#fff"/><circle cx="21.5" cy="12.5" r="2.2" fill="#fff" opacity=".5"/><circle cx="21.5" cy="20" r="1.6" fill="#fff" opacity=".7"/><defs><linearGradient id="hlg" x1="0" y1="0" x2="30" y2="30"><stop stop-color="#6C3AED"/><stop offset="1" stop-color="#9333EA"/></linearGradient></defs></svg><span>Leadlytics</span></a>
+<nav><a href="#about">About</a><a href="#services">Services</a><a href="#process">Process</a><a href="#why">Why Us</a></nav>
+<div class="hcta"><a href="#contact" class="btn-try">Free Data Audit</a><button class="hmenu" onclick="tg()"><span></span><span></span><span></span></button></div>
+</div></header>
+<div class="mov" id="mov" onclick="tg()"></div>
+<div class="mm" id="mm"><button class="mmx" onclick="tg()">&times;</button><a href="#about" onclick="tg()">About</a><a href="#services" onclick="tg()">Services</a><a href="#process" onclick="tg()">Process</a><a href="#why" onclick="tg()">Why Us</a><a href="#contact" onclick="tg()">Contact</a></div>
+
+<!-- HERO -->
+<section class="hero">
+<h1><span class="line"><span class="it">AI-Driven</span> Insights.</span><span class="line">Smarter Growth.</span><span class="line">Exceptional <span class="it">Results.</span></span></h1>
+<p>We validate and benchmark your B2B datasets against truth sources like LinkedIn — so every record is accurate, compliant, and ready to drive revenue.</p>
+<div class="hero-acts">
+<a href="#contact" class="btn-p">Get a Free Consultation <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+<a href="#services" class="btn-o">See Services</a>
+</div>
+</section>
+
+<!-- BELIEF -->
+<section class="belief rv">
+<div class="c"><div class="belief-card">
+<h2>Yes, we believe in <span class="it">data.</span><br>But only when it's <strong>accurate,</strong> <strong>compliant,</strong><br>and <strong>benchmarked</strong> against <span class="it">reality.</span></h2>
+</div></div>
+</section>
+
+<!-- STATS -->
+<section class="stats rv"><div class="c"><div class="stats-row">
+<div class="stat"><div class="stat-n" style="color:var(--amber)" data-target="22.5" data-suffix="%">0%</div><div class="stat-l">Annual data<br>decay rate</div></div>
+<div class="stat"><div class="stat-n" style="color:var(--red)" data-target="37" data-suffix="%">0%</div><div class="stat-l">CRM users lose<br>revenue</div></div>
+<div class="stat"><div class="stat-n" style="color:var(--t3)">~50%</div><div class="stat-l">Avg vendor<br>accuracy</div></div>
+<div class="stat"><div class="stat-n" style="color:var(--teal)" data-target="97" data-suffix="%+">0%+</div><div class="stat-l">Our validation<br>standard</div></div>
+</div></div></section>
+
+<!-- ABOUT -->
+<section class="about" id="about"><div class="c"><div class="about-grid">
+<div class="about-txt rv">
+<p style="font-family:'IBM Plex Mono';font-size:.66rem;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">Who we are</p>
+<h2>Smart Solutions for<br>Smarter <span class="it">Businesses</span></h2>
+<p>At Leadlytics Labs, we specialize in B2B data validation and benchmarking. We help companies ensure their datasets — whether purchased or sold — are accurate, compliant, and ready to perform in real campaigns and recruitment pipelines.</p>
+<div class="svc-tags">
+<span>Sales & Marketing Data</span>
+<span>Recruitment Data</span>
+<span>Data Benchmarking</span>
+<span>Compliance & Certification</span>
+</div>
+</div>
+<div class="about-vis rv" data-d="1">
+<div class="rpt-head"><span>Validation Report</span><span class="rpt-score" data-target="97.3" data-suffix="% Accuracy">0% Accuracy</span></div>
+<div class="rpt-row"><span class="rpt-email">j.martinez@acme.co</span><span class="rpt-field">VP Sales</span><span class="rpt-badge ok">Verified</span></div>
+<div class="rpt-row"><span class="rpt-email">sarah.chen@globex.com</span><span class="rpt-field">CMO</span><span class="rpt-badge ok">Verified</span></div>
+<div class="rpt-row"><span class="rpt-email">r.kumar@initech.io</span><span class="rpt-field">Dir Eng</span><span class="rpt-badge warn">Updated</span></div>
+<div class="rpt-row"><span class="rpt-email">old.contact@defunct.biz</span><span class="rpt-field">N/A</span><span class="rpt-badge fail">Failed</span></div>
+<div class="rpt-row"><span class="rpt-email">m.johnson@techcorp.com</span><span class="rpt-field">CTO</span><span class="rpt-badge ok">Verified</span></div>
+<div class="rpt-row"><span class="rpt-email">a.williams@nexgen.co</span><span class="rpt-field">Head Ops</span><span class="rpt-badge ok">Verified</span></div>
+<div class="rpt-bar"><div class="rpt-bar-fill" id="rptBar"></div></div>
+</div>
+</div></div></section>
+
+<!-- SERVICES -->
+<section class="services" id="services"><div class="c">
+<div class="sec-h rv"><p style="font-family:'IBM Plex Mono';font-size:.66rem;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;text-align:center">What we do</p><h2>Data Validation &<br><span class="it">Benchmarking Services</span></h2><p>We don't sell data. We make your data trustworthy.</p></div>
+<div class="s-grid">
+<div class="scard s1 rv" data-d="1">
+<div class="scard-img im1"><svg viewBox="0 0 400 160" fill="none"><rect x="30" y="30" width="80" height="100" rx="4" fill="rgba(16,185,129,.06)" stroke="rgba(16,185,129,.08)"/><rect x="130" y="50" width="80" height="80" rx="4" fill="rgba(16,185,129,.04)" stroke="rgba(16,185,129,.06)"/><rect x="230" y="20" width="80" height="110" rx="4" fill="rgba(16,185,129,.06)" stroke="rgba(16,185,129,.08)"/><rect x="330" y="40" width="50" height="90" rx="4" fill="rgba(16,185,129,.03)" stroke="rgba(16,185,129,.05)"/></svg></div>
+<div class="scard-body"><h3>Sales & Marketing Data</h3><p>Validate lead databases, CRM records, and purchased contact lists against real-world truth sources.</p><ul class="scard-feat"><li>Email deliverability verification</li><li>LinkedIn profile benchmarking</li><li>Company firmographic validation</li><li>GDPR & CCPA compliance</li></ul><a href="#contact" class="scard-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div>
+
+<div class="scard s2 rv" data-d="2">
+<div class="scard-img im2"><svg viewBox="0 0 400 160" fill="none"><circle cx="100" cy="80" r="30" fill="rgba(108,58,237,.04)" stroke="rgba(108,58,237,.06)"/><circle cx="200" cy="80" r="25" fill="rgba(108,58,237,.03)" stroke="rgba(108,58,237,.05)"/><circle cx="290" cy="80" r="35" fill="rgba(108,58,237,.04)" stroke="rgba(108,58,237,.06)"/><line x1="130" y1="80" x2="175" y2="80" stroke="rgba(108,58,237,.08)" stroke-dasharray="3 3"/><line x1="225" y1="80" x2="255" y2="80" stroke="rgba(108,58,237,.08)" stroke-dasharray="3 3"/></svg></div>
+<div class="scard-body"><h3>Recruitment Data</h3><p>Ensure candidate datasets are accurate and current against LinkedIn and verified directories.</p><ul class="scard-feat"><li>Candidate contact validation</li><li>Title and skills verification</li><li>ATS data quality audits</li><li>Recruitment compliance</li></ul><a href="#contact" class="scard-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div>
+
+<div class="scard s3 rv" data-d="3">
+<div class="scard-img im3"><svg viewBox="0 0 400 160" fill="none"><path d="M30 130L100 80L170 100L240 50L310 70L380 30" stroke="rgba(230,168,23,.12)" stroke-width="1.5" fill="none"/><path d="M30 130L100 80L170 100L240 50L310 70L380 30V160H30Z" fill="rgba(230,168,23,.02)"/><circle cx="100" cy="80" r="3" fill="rgba(230,168,23,.3)"/><circle cx="240" cy="50" r="3" fill="rgba(230,168,23,.3)"/><circle cx="380" cy="30" r="3" fill="rgba(230,168,23,.3)"/></svg></div>
+<div class="scard-body"><h3>Data Benchmarking</h3><p>Benchmark datasets against industry standards to measure accuracy, completeness, and relevance.</p><ul class="scard-feat"><li>Truth-source comparison reports</li><li>Accuracy scoring & grading</li><li>Gap analysis & enrichment</li><li>Periodic re-validation</li></ul><a href="#contact" class="scard-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div>
+
+<div class="scard s4 rv" data-d="4">
+<div class="scard-img im4"><svg viewBox="0 0 400 160" fill="none"><path d="M200 30L240 55L240 105L200 130L160 105L160 55Z" fill="rgba(108,58,237,.04)" stroke="rgba(108,58,237,.08)"/><path d="M200 50L225 65L225 95L200 110L175 95L175 65Z" fill="rgba(108,58,237,.06)" stroke="rgba(108,58,237,.1)"/><path d="M190 75L198 83L212 69" stroke="rgba(16,185,129,.3)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+<div class="scard-body"><h3>Compliance & Certification</h3><p>Third-party validation reports that build buyer confidence and reduce churn.</p><ul class="scard-feat"><li>Validation reports</li><li>GDPR & CCPA audits</li><li>"Verified by Leadlytics" badge</li><li>API-based automation</li></ul><a href="#contact" class="scard-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div>
+</div>
+</div></section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff" id="why"><div class="c">
+<div class="sec-h rv"><p style="font-family:'IBM Plex Mono';font-size:.66rem;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">Our key differentiators</p><h2>What Makes Us <span class="it">Different</span></h2><p>We benchmark against the real world — because that's where your data has to perform.</p></div>
+<div class="diff-list">
+<div class="ditem rv" data-d="1"><div class="ditem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div><div><h4>Truth-Source Benchmarking</h4><p>LinkedIn, company websites, directories — not database lookups.</p></div></div>
+<div class="ditem rv" data-d="2"><div class="ditem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h4>Compliance-First</h4><p>GDPR + CCPA in every validation by default.</p></div></div>
+<div class="ditem rv" data-d="3"><div class="ditem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg></div><div><h4>Buyers & Sellers</h4><p>Audits for buyers. Certification for sellers.</p></div></div>
+<div class="ditem rv" data-d="1"><div class="ditem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><h4>Ongoing Monitoring</h4><p>Recurring validation over time.</p></div></div>
+<div class="ditem rv" data-d="2"><div class="ditem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><h4>Detailed Reporting</h4><p>Field-level breakdowns and decay analysis.</p></div></div>
+<div class="ditem rv" data-d="3"><div class="ditem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div><h4>API-Ready</h4><p>Integrate and automate at scale.</p></div></div>
+</div>
+</div></section>
+
+<!-- TRUST -->
+<section class="trust rv">
+<div class="c"><p class="trust-label">Trusted by Industry <span class="it" style="color:var(--purple3);font-size:.7rem">Leaders</span></p>
+<div class="trust-logos"><span>Goodbits</span><span>Siemba</span><span>MacroMeasures</span><span>FAT ATOM</span><span>SalesBath</span><span>LeadGnome</span></div>
+</div></section>
+
+<!-- TESTIMONIALS -->
+<section class="testi" id="testimonials"><div class="c">
+<div class="sec-h rv"><p style="font-family:'IBM Plex Mono';font-size:.66rem;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;text-align:center">Testimonials</p><h2>Real Business, <span class="it">Real Growth</span></h2></div>
+<div class="t-grid">
+<div class="tcard rv" data-d="1"><div class="tcard-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><q>Leadlytics helped us discover that nearly 40% of our purchased lead data was outdated. After validation, email deliverability jumped to 98%.</q><div class="tcard-who"><div class="tcard-av">MB</div><div><div class="tcard-name">Matt Benati</div><div class="tcard-role">CEO, LeadGnome</div></div></div></div>
+<div class="tcard rv" data-d="2"><div class="tcard-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><q>Zero visibility into our data quality before. Benchmarking reports gave buyers confidence — churn dropped significantly in one quarter.</q><div class="tcard-who"><div class="tcard-av">KU</div><div><div class="tcard-name">Kannan Udayarajan</div><div class="tcard-role">CEO, Siemba Inc</div></div></div></div>
+<div class="tcard rv" data-d="3"><div class="tcard-stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><q>Thorough validation and ongoing monitoring means we no longer worry about database decay eating into our pipeline.</q><div class="tcard-who"><div class="tcard-av">KM</div><div><div class="tcard-name">Kevin Muffley</div><div class="tcard-role">Marketing, FAT ATOM</div></div></div></div>
+</div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+<svg class="cta-waves" viewBox="0 0 800 120" fill="none"><path d="M0 60Q200 20 400 60Q600 100 800 60" stroke="url(#cg1)" stroke-width="1" opacity=".5"/><path d="M0 70Q200 30 400 70Q600 110 800 70" stroke="url(#cg1)" stroke-width=".7" opacity=".3"/><path d="M0 50Q200 10 400 50Q600 90 800 50" stroke="url(#cg2)" stroke-width=".5" opacity=".2"/><defs><linearGradient id="cg1" x1="0" y1="0" x2="800" y2="0"><stop stop-color="#6C3AED"/><stop offset="1" stop-color="#10B981"/></linearGradient><linearGradient id="cg2" x1="0" y1="0" x2="800" y2="0"><stop stop-color="#9333EA"/><stop offset="1" stop-color="#6C3AED"/></linearGradient></defs></svg>
+<div class="c rv">
+<h2>Ready to Elevate Your<br><span class="it">Business?</span></h2>
+<p class="cta-p">Let's create data-driven strategies that drive results. Connect with us today.</p>
+<a href="mailto:hello@leadlyticslabs.com" class="btn-o" style="border-color:var(--bd2)">Book a free consultation</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer><div class="c">
+<div class="f-grid">
+<div class="f-brand"><a href="/" class="logo"><svg viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="8" fill="url(#flg)"/><path d="M8 21V9h3v9h4.5v3H8z" fill="#fff"/><defs><linearGradient id="flg" x1="0" y1="0" x2="30" y2="30"><stop stop-color="#6C3AED"/><stop offset="1" stop-color="#9333EA"/></linearGradient></defs></svg><span>Leadlytics</span></a><p>B2B data validation and benchmarking. Accurate, compliant, ready to drive results.</p></div>
+<div class="f-col"><h5>Company</h5><a href="#">About</a><a href="#">Blog</a><a href="#">Contact</a><a href="#">FAQ</a></div>
+<div class="f-col"><h5>Services</h5><a href="#">Sales & Marketing</a><a href="#">Recruitment Data</a><a href="#">Benchmarking</a><a href="#">Certification</a></div>
+<div class="f-col"><h5>Partnerships</h5><a href="#">HubSpot</a><a href="#">Google</a><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+</div>
+<div class="f-bot"><p>&copy; 2025 Leadlytics Private Limited. All Rights Reserved.</p>
+<div class="f-soc">
+<a href="https://www.linkedin.com/company/leadlytics/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+<a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+<a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+<a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 100-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 11-2.88 0 1.441 1.441 0 012.88 0z"/></svg></a>
+</div></div>
+</div></footer>
+
+<button class="scrollup" id="stt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg></button>
+
+<script>
+document.getElementById('hdr').classList.toggle('s',scrollY>50);
+window.addEventListener('scroll',()=>{document.getElementById('hdr').classList.toggle('s',scrollY>50);document.getElementById('stt').classList.toggle('v',scrollY>500)});
+function tg(){document.getElementById('mm').classList.toggle('o');document.getElementById('mov').classList.toggle('o')}
+const ob=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');x.target.querySelectorAll('[data-target]').forEach(el=>{if(el.dataset.done)return;el.dataset.done='1';const t=parseFloat(el.dataset.target),s=el.dataset.suffix||'',d=t%1!==0,dur=1e3,st=performance.now();(function f(n){const p=Math.min((n-st)/dur,1),e=1-Math.pow(1-p,3);el.textContent=(d?( e*t).toFixed(1):Math.round(e*t))+s;p<1&&requestAnimationFrame(f)})(st)});const rb=x.target.querySelector('#rptBar');if(rb&&!rb.dataset.done){rb.dataset.done='1';setTimeout(()=>{rb.style.width='97.3%'},200)}}})},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv').forEach(el=>ob.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+scrollY-60,behavior:'smooth'})}})});
+</script>
+</body>
+</html>
